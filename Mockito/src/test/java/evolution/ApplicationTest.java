@@ -55,7 +55,7 @@ public class ApplicationTest {
 	public void answerMethod() {
 		AnyService anyService = Mockito.mock(AnyService.class);
 		ReflectionTestUtils.setField(anyController, "anyService", anyService);
-		Mockito.		doAnswer(new Answer<Void>() {
+		Mockito.	doAnswer(new Answer<Void>() {
 			@Override
 			public Void answer(InvocationOnMock invocation) throws Throwable {
 				Arrays.asList(invocation.getArguments()).forEach(System.out::println);
