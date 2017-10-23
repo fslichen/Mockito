@@ -9,4 +9,8 @@ public class AnyService {
 	public AnyPojo anyMethod(AnyPojo anyPojo) {
 		return anyPojo;
 	}
+	
+	public int anotherMethod(int code) {
+		return code;
+	}
 }

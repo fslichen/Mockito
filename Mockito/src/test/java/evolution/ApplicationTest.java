@@ -29,4 +29,13 @@ public class ApplicationTest {
 		AnyPojo result = anyController.post(null);
 		System.out.println(result);
 	}
+	
+	@Test
+	public void anotherTest() {
+		AnyService anyService = Mockito.mock(AnyService.class);
+		ReflectionTestUtils.setField(anyController, "anyService", anyService);
+		Mockito.when(anyService.anotherMethod(Mockito.anyInt())).thenReturn(3);
+		int result = anyController.get(6);
+		System.out.println(result);
+	}
 }
