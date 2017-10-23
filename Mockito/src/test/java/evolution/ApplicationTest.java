@@ -1,8 +1,12 @@
 package evolution;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -39,10 +43,26 @@ public class ApplicationTest {
 		System.out.println(result);
 	}
 	
-	@Test
+	@Test(expected = Exception.class)
 	public void exceptionTest() {
 		AnyService anyService = Mockito.mock(AnyService.class);
 		ReflectionTestUtils.setField(anyController, "anyService", anyService);
 		Mockito.doThrow(Exception.class).when(anyService).exceptionMethod();
+		anyController.exceptionMethod();
+	}
+	
+	@Test
+	public void answerMethod() {
+		AnyService anyService = Mockito.mock(AnyService.class);
+		ReflectionTestUtils.setField(anyController, "anyService", anyService);
+		Mockito.		doAnswer(new Answer<Void>() {
+			@Override
+			public Void answer(InvocationOnMock invocation) throws Throwable {
+				Arrays.asList(invocation.getArguments()).forEach(System.out::println);
+				System.out.println("Hello World");
+				return null;
+			}
+		}).when(anyService).answerMethod(null);
+		anyController.answerMethod(null);
 	}
 }

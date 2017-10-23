@@ -29,4 +29,9 @@ public class AnyController {
 	public void exceptionMethod() {
 		anyService.exceptionMethod();
 	}
+	
+	@PostMapping("/answer")
+	public void answerMethod(@RequestBody AnyPojo anyPojo) {
+		anyService.answerMethod(anyPojo);
+	}
 }

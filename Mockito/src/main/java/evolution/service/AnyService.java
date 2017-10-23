@@ -15,6 +15,10 @@ public class AnyService {
 	}
 	
 	public void exceptionMethod() {
-		int i = 1 / 0;
+		
+	}
+	
+	public void answerMethod(AnyPojo anyPojo) {
+		
 	}
 }
