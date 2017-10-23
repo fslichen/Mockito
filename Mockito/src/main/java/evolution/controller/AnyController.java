@@ -24,4 +24,9 @@ public class AnyController {
 	public AnyPojo post(@RequestBody AnyPojo anyPojo) {
 		return anyService.anyMethod(anyPojo);
 	}
+	
+	@GetMapping("/exception")
+	public void exceptionMethod() {
+		anyService.exceptionMethod();
+	}
 }

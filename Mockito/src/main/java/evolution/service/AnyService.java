@@ -13,4 +13,8 @@ public class AnyService {
 	public int anotherMethod(int code) {
 		return code;
 	}
+	
+	public void exceptionMethod() {
+		int i = 1 / 0;
+	}
 }

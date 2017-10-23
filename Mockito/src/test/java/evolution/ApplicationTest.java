@@ -38,4 +38,11 @@ public class ApplicationTest {
 		int result = anyController.get(6);
 		System.out.println(result);
 	}
+	
+	@Test
+	public void exceptionTest() {
+		AnyService anyService = Mockito.mock(AnyService.class);
+		ReflectionTestUtils.setField(anyController, "anyService", anyService);
+		Mockito.doThrow(Exception.class).when(anyService).exceptionMethod();
+	}
 }
