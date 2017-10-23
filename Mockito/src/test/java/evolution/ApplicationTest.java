@@ -65,4 +65,27 @@ public class ApplicationTest {
 		}).when(anyService).answerMethod(null);
 		anyController.answerMethod(null);
 	}
+	
+	@Test
+	public void doReturnTest() {
+		AnyService anyService = Mockito.mock(AnyService.class);
+		ReflectionTestUtils.setField(anyController, "anyService", anyService);
+		AnyPojo anyPojo = new AnyPojo();
+		anyPojo.setName("Chen");
+		anyPojo.setGender("M");
+		Mockito.doReturn(anyPojo).when(anyService).anyMethod(anyPojo);
+		AnyPojo result = anyController.post(anyPojo);
+		System.out.println(result);
+	}
+	
+	@Test
+	public void doNothingTest() {
+		AnyService anyService = Mockito.mock(AnyService.class);
+		ReflectionTestUtils.setField(anyController, "anyService", anyService);
+		AnyPojo anyPojo = new AnyPojo();
+		anyPojo.setName("Chen");
+		anyPojo.setGender("M");
+		Mockito.doNothing().when(anyService).answerMethod(anyPojo);// Use doNothing when invoking a void method.
+		anyController.answerMethod(anyPojo);
+	}
 }
